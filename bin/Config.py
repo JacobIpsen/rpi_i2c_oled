@@ -121,7 +121,7 @@ class Config:
             show_hint = self.get_option_value('show_hint')
             compact = self.get_option_value('compact')
 
-            self.display = Display(busnum=busnum, screenshot=screenshot,
+            self.display = Display(self,busnum=busnum, screenshot=screenshot,
                                    rotate=rotate, show_icons=show_icons,
                                    show_hint=show_hint, compact=compact)
 
