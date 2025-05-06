@@ -39,5 +39,11 @@
     "Static_Screen_Limit": null,
     "Static_Screen_Duration": 5,
     "Static_Screen_Text": "Hassio verion {hassio.os.version} on {hostname} with IP {ip}",
-    "static_Screen_Text_NoScroll": false
+    "static_Screen_Text_NoScroll": false,
+    
+   "Show_Stats_Screen": true,
+   "Stats_Screen_Limit": null,
+   "Stats_Screen_Duration": 5,
+
+   "Supervisor_token": null 
 }

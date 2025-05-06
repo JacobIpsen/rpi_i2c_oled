@@ -1,26 +1,27 @@
+from PIL import Image, ImageDraw, ImageFont, ImageOps
+import time
 import logging
 import textwrap
-import time
-
-from PIL import Image, ImageDraw, ImageFont, ImageOps
-
+from bin.SSD1306 import SSD1306_128_64, SSD1306_128_32
 from bin.Scroller import Scroller
-from bin.SSD1306 import SSD1306_128_32 as SSD1306
-from bin.Utils import Utils
+from bin.Utils import Utils, HassioUtils
 
 
 class Display:
     DEFAULT_BUSNUM = 1
     SCREENSHOT_PATH = "./img/examples/"
 
-    def __init__(self, busnum = None, screenshot = False, rotate = False, show_icons = True,
+    def __init__(self, busnum = None, screenshot = False, rotate = False,config = None, show_icons = True,
                  compact = False, show_hint = False):
         self.logger = logging.getLogger('Display')
 
         if not isinstance(busnum, int):
             busnum = Display.DEFAULT_BUSNUM
 
-        self.display = SSD1306(busnum)
+        if config and config.get_option_value('screen_size') == '64':
+            self.display = SSD1306_128_64(busnum)
+        else:
+            self.display = SSD1306_128_32(busnum)
         self.clear()
         self.width = self.display.width
         self.height = self.display.height
@@ -38,6 +39,8 @@ class Display:
         self.image = Image.new("1", (self.width, self.height))
         self.draw = ImageDraw.Draw(self.image)
         self.screenshot = screenshot
+
+        self.logger = logging.getLogger('Display')
 
     def clear(self):
         self.display.begin()
@@ -323,6 +326,7 @@ class StaticScreen(BaseScreen):
                 self.display.draw.text((x, y), self.text, font=font, fill=255)
 
             self.render_with_defaults()
+            time.sleep(self.duration)
 
 class WelcomeScreen(BaseScreen):
     @property
@@ -399,6 +403,7 @@ class SplashScreen(BaseScreen):
         self.display.draw.text((textbox_x, 20), ln2, font=ln2_font, fill=255)
 
         self.render_with_defaults()
+        time.sleep(self.duration)
 
 class NetworkScreen(BaseScreen):
     def render(self):

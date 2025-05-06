@@ -1,7 +1,7 @@
 I2C OLED Controller for Raspberry Pi
 ====================================
 
-Python library to enable 128x32 pixel OLED for Raspberry Pi (both 32 and 64-bit) that utilize the SSD1306 chipset. This works as a standalone service and can run on a standard Raspberry Pi running Raspian.
+Python library to enable 128x32 or 64 pixel OLED for Raspberry Pi (both 32 and 64-bit) that utilize the SSD1306 chipset. This works as a standalone service and can run on a standard Raspberry Pi running Raspian.
 
 **This addon leverages the original [Adafruit Python SSD1306](https://github.com/adafruit/Adafruit_Python_SSD1306) and [GPIO](https://github.com/adafruit/Adafruit_Python_GPIO) libraries, which have been deprecated. However, I have taken the nessassary parts out of this and bundled them into this I2C module avoiding the need for GPIO and relying on the Raspberry Pi's I2C setup.**
 

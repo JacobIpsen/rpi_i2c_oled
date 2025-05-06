@@ -1,10 +1,9 @@
-import logging
 import json
+import logging
 import signal
-
+from bin.Utils import Utils, HassioUtils
 from bin.Screens import *
 from bin.Scroller import Scroller
-from bin.Utils import HassioUtils, Utils
 
 
 class Config:
@@ -16,7 +15,8 @@ class Config:
         'storage',
         'memory',
         'cpu',
-        'static'
+        'static',
+        'stats'
     ]
     HASSIO_DEPENDENT_SCREENS = [
         'Splash'
@@ -38,7 +38,9 @@ class Config:
         'rotate': 'rotate',
         'show_icons': 'show_icons',
         'show_hint': 'show_hint',
-        'compact': 'compact'
+        'compact': 'compact',
+        'supervizor_token': 'supervizor_token',
+        'screen_size': 'screen_size'
     }
 
     logger = logging.getLogger('Config')
